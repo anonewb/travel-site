@@ -1,0 +1,13 @@
+/* _global is used where _ is to say that this css file is only to be imported by other css file. 
+   base folder contains basic tags
+*/
+
+body {
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}

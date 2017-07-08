@@ -1,0 +1,31 @@
+/* _large-hero is used where _ is to say that this css file is only to be imported by other css file. 
+   modules folder contains classes to be styled.
+   & is used for nesting purpose viz a postcss trick to keep code organize
+*/
+
+.large-hero {
+	position: relative;
+
+	&__text-content {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%); /* Vertically centering method */
+	left: 0;
+	width: 100%;
+	text-align: center;
+
+	}
+
+	&__title {
+		font-weight: 300;
+		color: #2f5572;
+		font-size: 4.8rem;  /* rem has special importance */
+	}
+
+	&__subtitle {
+		font-weight: 300;
+		color: #2f5572;
+		font-size: 2.9rem;
+	}
+}
+
