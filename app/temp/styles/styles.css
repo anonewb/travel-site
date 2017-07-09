@@ -451,10 +451,6 @@ template {
   display: none;
 }
 
-/* ========================================================================== */
-/* ========================================================================== */
-/* ========================================================================== */
-
 /* _global is used where _ is to say that this css file is only to be imported by other css file. 
    base folder contains basic tags
 */
