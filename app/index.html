@@ -24,7 +24,13 @@
   </header>
 
   <div class="large-hero">
-    <img src="assets/images/hero--large.jpg">
+    <picture>
+      <source srcset="assets/images/hero--large-i.jpg 1920w, assets/images/hero--large-hi-dpi.jpg 3840w" media="(min-width: 1380px)"> <!-- 1st img is of low resolution for low end devices,
+                                        2nd img "hi-dpi.jpg" is of high reso -->
+      <source srcset="assets/images/hero--medium-i.jpg 1380w, assets/images/hero--medium-hi-dpi.jpg 2760w" media="(min-width: 990px)">      <!-- "-i" means info made by brad to show reso -->
+      <source srcset="assets/images/hero--small-i.jpg 990w, assets/images/hero--small-hi-dpi.jpg 1980w" media="(min-width: 640px)">
+      <img srcset="assets/images/hero--smaller-i.jpg 640w, assets/images/hero--smaller-hi-dpi.jpg 1280w" alt="Coatal view of oceans and mountains">
+    </picture>
     <div class="large-hero__text-content">         <!-- __text-content is format of writing class name -->
       <h1 class="large-hero__title">Your clarity.</h1>     
       <h2 class="large-hero__subtitle">One trip away.</h2>
