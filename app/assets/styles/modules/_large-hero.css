@@ -19,18 +19,34 @@
 	&__title {
 		font-weight: 300;
 		color: $mainBlue;
-		font-size: 4.8rem;  /* rem has special importance */
+		font-size: 1.1rem;  /* rem has special importance */
 		margin: 0;
+
+		@mixin atSmall {
+			font-size: 2rem;
+		}
+
+		@mixin atMedium {
+			font-size: 3.2rem;
+		}
+
+		@mixin atLarge {
+			font-size: 4.8rem;
+		}
 	}
 
 	&__subtitle {
 		font-weight: 300;
 		color: $mainBlue;
-		font-size: 2.9rem;   /* it is relative to root element i.e html
+		font-size: 1.1rem;   /* it is relative to root element i.e html
 								eg: if html has by default 16px font size
 								 then 1.5rem means 16*1.5=24px But diff 
 								 browsers have diff default font size So.. ; */
 		margin: 0;
+
+		@mixin atSmall {
+			font-size: 2.9rem;
+		}
 	}
 
 	&__description {
