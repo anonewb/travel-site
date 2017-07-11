@@ -570,15 +570,79 @@ img {
 	margin-right: auto;
 }
 
+.wrapper--medium {
+		max-width: 976px;
+	}
+
+.wrapper .wrapper { 			/* applies only to nested wrapper*/
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 .page-section {
-	padding: 4.5rem 0;
+	padding: 1.2rem 0;
 }
 
-/*4.5 top and bottom i.e vertically*/
+@media (min-width: 800px) {
+
+.page-section {
+		padding: 4.5rem 0	/*4.5 top and bottom i.e vertically*/
+}
+	}
 
 .page-section--blue {
 		background-color: #2f5572;
 		color: #FFF;
+	}
+
+.headline {
+	font-size: 1.9rem;
+	font-weight: 300;
+	color: #2f5572;
+}
+
+@media (min-width: 530px) {
+
+.headline {
+		font-size: 2.875rem /*46px(size we want)/16px(default baseline font-size)=2.875rem*/
+}
+	}
+
+.headline--centered {  			/*modifier class*/
+		text-align: center;
+	}
+
+.headline--orange {
+		color: #d59541;
+	}
+
+.headline--small {
+		font-size: 1.2rem;
+	}
+
+@media (min-width: 530px) {
+
+.headline--small {
+			font-size: 1.875rem /*30px(size we want)/16px(default baseline font-size)=1.875rem*/
+	}
+	}
+
+.headline--narrow {
+		max-width: 500px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+.headline--light {
+		font-weight: 100;
+	}
+
+.headline--b-margin-small {
+		margin-bottom: .5em; /*prefer em for margin Brad said*/
+	}
+
+.headline--b-margin-large {
+		margin-bottom: 1.6em;
 	}
 
 
