@@ -470,6 +470,10 @@ img {
 	        box-sizing: border-box;
 }
 
+a {
+	color: #d59541;
+}
+
 /* _large-hero is used where _ is to say that this css file is only to be imported by other css file. 
    modules folder contains classes to be styled.
    & is used for nesting purpose viz a postcss trick to keep code organize
@@ -585,6 +589,17 @@ img {
 		padding-right: 0;
 	}
 
+.wrapper--b-margin {
+		margin-bottom: 1rem;
+	}
+
+@media (min-width: 530px) {
+
+.wrapper--b-margin {
+			margin-bottom: 3.875rem
+	}
+	}
+
 .page-section {
 	padding: 1.2rem 0;
 }
@@ -651,6 +666,10 @@ img {
 		margin-bottom: 1.6em;
 	}
 
+.headline--no-t-margin {
+		margin-top: 0;
+	}
+
 .row::after {
 		content: "";
 		clear: both;
@@ -666,7 +685,16 @@ img {
 		
 	}
 
+.row__b-margin-untill-medium {
+		margin-bottom: 1rem;
+	}
+
 @media (min-width: 800px) {
+
+		.row__b-margin-untill-medium {
+			margin-bottom: 0;
+		}
+
 		.row__medium-4 {
 			float: left;
 			width: 33.33%;
@@ -677,6 +705,23 @@ img {
 			width: 66.67%;
 		}
 	}
+
+.generic-content-container p {
+		line-height: 1.65;
+		margin: 1.8rem 0;
+	}
+
+@media (min-width: 530px) {
+
+.generic-content-container p {
+			font-size: 1.125rem
+	}
+	}
+
+.generic-content-container p a {
+		font-weight: 700;
+	}
+
 
 
 
