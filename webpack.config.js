@@ -2,9 +2,9 @@
 // create object that tells webpack what to do
 
 module.exports = {
-	entry: './app/assets/scripts/App.js',
+	entry: "./app/assets/scripts/App.js",
 	output: {
-		path: './app/temp/scripts',
-		filename: 'App.js'
+		path: __dirname+'./app/temp/scripts',
+		filename: "bundle.js"
 	}
 }
