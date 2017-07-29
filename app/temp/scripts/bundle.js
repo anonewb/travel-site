@@ -87,5 +87,7 @@ function Person(name, favColor) {
 	}
 }
 
+module.exports = Person; //module.exports exports what this file should export. In this case constructor function Person is expored
+
 /***/ })
 /******/ ]);
