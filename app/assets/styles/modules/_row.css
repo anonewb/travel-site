@@ -1,0 +1,112 @@
+.row {
+
+	@mixin clearfix;
+
+	&--t-padding {
+		padding-top: 80px;
+	}
+
+	&--gutters {
+		margin-right: -65px;	/*Not Undrstud. Therefore in .wrapper overflow:hidden*/
+	}
+
+	&--gutters-large {
+		margin-right: -100px;
+	}
+
+	/* not working
+
+	&--gutters-small {
+		margin-right: -45px;
+	}
+
+	*/
+
+	&--gutters > div { /* ">" selects all children of row--gutters class hvng div */
+		padding-right: 65px;	
+	}
+
+	&--gutters-large > div { 
+		padding-right: 100px;	
+	}
+
+	/* not working
+
+	&--gutters-small > div {
+		margin-right: 45px;
+	}
+
+	*/
+
+	&__b-margin-untill-medium {
+		margin-bottom: 1rem;
+	}
+
+	@mixin atMedium {
+
+		&__b-margin-untill-medium {
+			margin-bottom: 0;
+		}
+
+		&__medium-4 {
+			float: left;
+			width: 33.33%;
+		}
+
+		&__medium-6 {
+			float: left;
+			width: 50%;
+		}
+
+		&__medium-8 {
+			float: left;
+			width: 66.67%;
+		}
+	}
+
+	@mixin atLarge {
+
+		&__b-margin-untill-large {
+			margin-bottom: 0;
+		}
+
+		&__large-4 {
+			float: left;
+			width: 33.33%;
+		}
+
+		&__large-6 {
+			float: left;
+			width: 50%;
+		}
+
+		&__large-8 {
+			float: left;
+			width: 66.67%;
+		}
+	}
+
+	/* begin equal height rules */
+	&--equal-height-at-medium {
+		@mixin atMedium {
+			display: flex;
+		}
+
+		& > div {
+			float: none;
+			display: flex;
+		}
+	}
+
+	&--equal-height-at-large {
+		@mixin atLarge {
+			display: flex;
+		}
+
+		& > div {
+			float: none;
+			display: flex;
+		}
+	}
+		
+}

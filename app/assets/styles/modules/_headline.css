@@ -1,0 +1,47 @@
+.headline {
+	font-size: 1.9rem;
+	font-weight: 300;
+	color: $mainBlue;
+
+	@mixin atSmall {
+		font-size: 2.875rem; /*46px(size we want)/16px(default baseline font-size)=2.875rem*/
+	}
+
+	&--centered {  			/*modifier class*/
+		text-align: center;
+	}
+
+	&--orange {
+		color: $mainOrange;
+	}
+
+	&--small {
+		font-size: 1.2rem;
+
+		@mixin atSmall {
+			font-size: 1.875rem; /*30px(size we want)/16px(default baseline font-size)=1.875rem*/
+		}
+	}
+
+	&--narrow {
+		max-width: 500px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&--light {
+		font-weight: 100;
+	}
+
+	&--b-margin-small {
+		margin-bottom: .5em; /*prefer em for margin Brad said*/
+	}
+
+	&--b-margin-large {
+		margin-bottom: 1.6em;
+	}
+
+	&--no-t-margin {
+		margin-top: 0;
+	}
+}
