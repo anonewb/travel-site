@@ -10,5 +10,17 @@ module.exports = {
 	output: {
 		path: __dirname+'/app/temp/scripts',
         filename: "bundle.js"
+	},
+	module: { //new obj module
+		loaders: [ //property having array
+			{
+				loader: 'babel-loader', // name of the loader
+				query: {  //obj
+					presets: ['es2015']
+				},
+				test: /\.js$/, //regular expression. excluding other than .js files
+				exclude:/node_modules/  //excluding .js files
+			}
+		]
 	}
 }
