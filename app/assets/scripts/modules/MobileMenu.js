@@ -11,12 +11,12 @@ class MobileMenu {
 	}
 
 	events() { //within this non-special method, list any or all events which we want to watch for.
-		this.menuIcon.click(this.toggleTheMenu); //when the menuIcon is clicked we want to call toggleTheMenu() method 
+		this.menuIcon.click(this.toggleTheMenu.bind("hello jane")); //when the menuIcon is clicked we want to call toggleTheMenu() method. Anything inside bind() is passed will be used as this keyword in toggleTheMenu() method 
 		console.log(this); //here this keyword is pointing to object MobileMenu as we normally want
 	}
 
 	toggleTheMenu() { //brand new method to handle events present in event() method
-		console.log(this); //here this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
+		alert(this); // before this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
 		this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
 	}
 }
