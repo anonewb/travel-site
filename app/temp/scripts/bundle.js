@@ -70,53 +70,42 @@
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _MobileMenu = __webpack_require__(1);
 
-var _Person2 = __webpack_require__(1);
-
-var _Person3 = _interopRequireDefault(_Person2);
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+//MobileMenu is just a var name,its name can be anything.but to stay organized name it same as name of the class
+//We cant just import above module, we have to create an obj that uses this MobileMenu class as a blueprint
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var $ = __webpack_require__(2); //require is not a part of js lang, it is a part of node
-//var Person = require('./modules/Person'); //here Person contains only Person constructor function, not the entire Person.js. Means no code outside Person constructor function
+//***********************************************************************************************//
 
-var Adult = function (_Person) {
-	_inherits(Adult, _Person);
+// var $ = require('jquery'); //require is not a part of js lang, it is a part of node
+// //var Person = require('./modules/Person'); //here Person contains only Person constructor function, not the entire Person.js. Means no code outside Person constructor function
+// import Person from './modules/Person';
 
-	function Adult() {
-		_classCallCheck(this, Adult);
 
-		return _possibleConstructorReturn(this, (Adult.__proto__ || Object.getPrototypeOf(Adult)).apply(this, arguments));
-	}
+// class Adult extends Person {
+// 	payTaxes() {
+// 		console.log(this.name + " now owes $0 in taxes");
+// 	}
+// }
 
-	_createClass(Adult, [{
-		key: 'payTaxes',
-		value: function payTaxes() {
-			console.log(this.name + " now owes $0 in taxes");
-		}
-	}]);
+// alert("ABC 321");
 
-	return Adult;
-}(_Person3.default);
+// var john = new Person("John Doe", "Red");
+// john.greet();
 
-alert("ABC 321");
+// var jane = new Adult("Jane Smith", "Green");
+// jane.greet();
+// jane.payTaxes();
 
-var john = new _Person3.default("John Doe", "Red");
-john.greet();
-
-var jane = new Adult("Jane Smith", "Green");
-jane.greet();
-jane.payTaxes();
-
-//asume jane is a adult and jane is a baby
-//only jane can pay taxes
+// //asume jane is a adult and jane is a baby
+// //only jane can pay taxes
 
 /***/ }),
 /* 1 */
@@ -131,43 +120,45 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _jquery = __webpack_require__(2);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-//Person.js is a module***
+var MobileMenu = function () {
+	function MobileMenu() {
+		_classCallCheck(this, MobileMenu);
 
-//doesnt use classical inheritance but it uses prototype inheritance
+		// This constructor functn will ran immediately when a new obj is created with this MobileMenu class
+		// $(".site-header__menu-icon").click(function() { //JQuery Spaghetti code. so avoid using this. 1st we ae selecting elements from DOM then Event handling is done and then defining functionality
+		// 	console.log("Top right corner icon was clicked");  
+		// });
 
-var Person = function () {
-	function Person(name, favColor) {
-		_classCallCheck(this, Person);
-
-		this.name = name;
-		this.favoriteColor = favColor;
+		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM selection for our MobileMenu
+		this.events(); // calls events() method
 	}
 
-	_createClass(Person, [{
-		key: "greet",
-		value: function greet() {
-			console.log("Hi there, my name  is " + this.name + " and my favorite color is " + this.favoriteColor + ". ");
+	_createClass(MobileMenu, [{
+		key: "events",
+		value: function events() {
+			//within this non-special method, list any or all events which we want to watch for.
+			this.menuIcon.click(this.toggleTheMenu); //when the menuIcon is clicked we want to call toggleTheMenu() method 
+		}
+	}, {
+		key: "toggleTheMenu",
+		value: function toggleTheMenu() {
+			//brand new method to handle events present in event() method
+			console.log("Icon was cllick");
 		}
 	}]);
 
-	return Person;
+	return MobileMenu;
 }();
 
-// function Person(name, favColor) {
-// 	this.name = name;
-// 	this.favoriteColor = favColor;
-// 	this.greet = function() {
-// 		console.log("Hello, my name  is " + this.name + " and my favorite color is " + this.favoriteColor + ". ");
-// 	}
-// }
-
-//module.exports = Person; // exports = {} object acts like the return statement.
-// module.exports literally is assigned to Person constructor function.
-
-
-exports.default = Person; //ES6 way of exporting
+exports.default = MobileMenu; // ES5 way of exporting this class
 
 /***/ }),
 /* 2 */
