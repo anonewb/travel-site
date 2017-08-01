@@ -1,21 +1,23 @@
+//MobileMenu.js is a module***
+
 import $ from 'jquery';
 
 class MobileMenu {
 	constructor() { // This constructor functn will ran immediately when a new obj is created with this MobileMenu class
-		// $(".site-header__menu-icon").click(function() { //JQuery Spaghetti code. so avoid using this. 1st we ae selecting elements from DOM then Event handling is done and then defining functionality
-		// 	console.log("Top right corner icon was clicked");  
-		// });
 
 		this.menuIcon = $(".site-header__menu-icon"); // property that stores DOM selection for our MobileMenu
+		this.menuContent = $(".site-header__menu-content"); //creating a shortcut to that div i.e currently hidden
 		this.events(); // calls events() method
 	}
 
 	events() { //within this non-special method, list any or all events which we want to watch for.
 		this.menuIcon.click(this.toggleTheMenu); //when the menuIcon is clicked we want to call toggleTheMenu() method 
+		console.log(this); //here this keyword is pointing to object MobileMenu as we normally want
 	}
 
 	toggleTheMenu() { //brand new method to handle events present in event() method
-		console.log("Icon was cllick");
+		console.log(this); //here this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
+		this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
 	}
 }
 

@@ -81,32 +81,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj
 
-
-//***********************************************************************************************//
-
-// var $ = require('jquery'); //require is not a part of js lang, it is a part of node
-// //var Person = require('./modules/Person'); //here Person contains only Person constructor function, not the entire Person.js. Means no code outside Person constructor function
-// import Person from './modules/Person';
-
-
-// class Adult extends Person {
-// 	payTaxes() {
-// 		console.log(this.name + " now owes $0 in taxes");
-// 	}
-// }
-
-// alert("ABC 321");
-
-// var john = new Person("John Doe", "Red");
-// john.greet();
-
-// var jane = new Adult("Jane Smith", "Green");
-// jane.greet();
-// jane.payTaxes();
-
-// //asume jane is a adult and jane is a baby
-// //only jane can pay taxes
-
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -118,7 +92,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); //MobileMenu.js is a module***
 
 var _jquery = __webpack_require__(2);
 
@@ -133,11 +107,9 @@ var MobileMenu = function () {
 		_classCallCheck(this, MobileMenu);
 
 		// This constructor functn will ran immediately when a new obj is created with this MobileMenu class
-		// $(".site-header__menu-icon").click(function() { //JQuery Spaghetti code. so avoid using this. 1st we ae selecting elements from DOM then Event handling is done and then defining functionality
-		// 	console.log("Top right corner icon was clicked");  
-		// });
 
 		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM selection for our MobileMenu
+		this.menuContent = (0, _jquery2.default)(".site-header__menu-content"); //creating a shortcut to that div i.e currently hidden
 		this.events(); // calls events() method
 	}
 
@@ -146,12 +118,14 @@ var MobileMenu = function () {
 		value: function events() {
 			//within this non-special method, list any or all events which we want to watch for.
 			this.menuIcon.click(this.toggleTheMenu); //when the menuIcon is clicked we want to call toggleTheMenu() method 
+			console.log(this); //here this keyword is pointing to object MobileMenu as we normally want
 		}
 	}, {
 		key: "toggleTheMenu",
 		value: function toggleTheMenu() {
 			//brand new method to handle events present in event() method
-			console.log("Icon was cllick");
+			console.log(this); //here this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
+			this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
 		}
 	}]);
 
