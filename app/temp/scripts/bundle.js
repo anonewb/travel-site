@@ -108,7 +108,8 @@ var MobileMenu = function () {
 
 		// This constructor functn will ran immediately when a new obj is created with this MobileMenu class
 		this.siteHeader = (0, _jquery2.default)(".site-header"); //property of the obj
-		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM selection for our MobileMenu
+		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM(Element) for selection of our MobileMenu
+		//in simple words element having ".&__menu-icon" is stored in this variable
 		this.menuContent = (0, _jquery2.default)(".site-header__menu-content"); //creating a shortcut to that div i.e currently hidden
 		this.events(); // calls events() method
 	}
@@ -127,6 +128,7 @@ var MobileMenu = function () {
 			//now this keyword points towards our main obj as we wanted. before this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
 			this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
 			this.siteHeader.toggleClass("site-header--is-expanded");
+			this.menuIcon.toggleClass("site-header__menu-icon--close-x");
 		}
 	}]);
 
