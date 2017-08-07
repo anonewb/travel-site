@@ -10338,13 +10338,20 @@ var _RevealOnScroll = __webpack_require__(3);
 
 var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
 
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj and constructor func is called
 //MobileMenu is just a var name,its name can be anything.but to stay organized name it same as name of the class
 //We cant just import above module, we have to create an obj that uses this MobileMenu class as a blueprint
 
-var revealOnScroll = new _RevealOnScroll2.default(); //creating a new obj/instance of RevealOnScroll class
+var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj and constructor func is called
+
+//var revealOnScroll = new RevealOnScroll(); //creating a new obj/instance of RevealOnScroll class
+new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 
 /***/ }),
 /* 2 */
@@ -10428,10 +10435,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var RevealOnScroll = function () {
-	function RevealOnScroll() {
+	function RevealOnScroll(els, offset) {
 		_classCallCheck(this, RevealOnScroll);
 
-		this.itemsToReveal = (0, _jquery2.default)(".feature-item"); //selected this element
+		this.itemsToReveal = els; //selecting element viz passed in the argument of RevealOnScroll() 
+		this.offsetPercentage = offset;
 		this.hideInitially();
 		this.createWaypoints();
 	}
@@ -10444,6 +10452,7 @@ var RevealOnScroll = function () {
 	}, {
 		key: 'createWaypoints',
 		value: function createWaypoints() {
+			var that = this;
 			this.itemsToReveal.each(function () {
 				//inside each(), value of this keyword is set to current DOM element which it is looping
 				//but inside Waypoints() obj, this keyword will point to the obj itself i.e Waypoints() 
@@ -10454,7 +10463,7 @@ var RevealOnScroll = function () {
 					handler: function handler() {
 						(0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
 					}, //what is to happen when this element is scrolled to
-					offset: "85%" //reveal when 85% of screen is scrolled
+					offset: that.offsetPercentage //reveal when 85% of screen is scrolled
 				}); //Waypoints obj needs atleast 2 properties
 			}); //anything inside this each() method will run once for each element
 		}

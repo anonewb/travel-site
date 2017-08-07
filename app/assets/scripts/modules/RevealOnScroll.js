@@ -2,10 +2,11 @@ import $ from 'jquery';
 import waypoints from '../../../../node_modules/waypoints/lib/noframework.waypoints';
 
 class RevealOnScroll {
-	constructor() {
-		this.itemsToReveal = $(".feature-item"); //selected this element
+	constructor(els, offset) {
+		this.itemsToReveal = els; //selecting element viz passed in the argument of RevealOnScroll() 
+		this.offsetPercentage = offset;
 		this.hideInitially();
-		this.createWaypoints();
+		this.createWaypoints(); 
 	}
 
 	hideInitially() {
@@ -13,6 +14,7 @@ class RevealOnScroll {
 	}
 
 	createWaypoints() {
+		var that = this;
 		this.itemsToReveal.each(function() { //inside each(), value of this keyword is set to current DOM element which it is looping
 											//but inside Waypoints() obj, this keyword will point to the obj itself i.e Waypoints() 
 											//but we dont want this. to avoid this we can do...
@@ -22,7 +24,7 @@ class RevealOnScroll {
 				handler: function() {
 					$(currentItem).addClass("reveal-item--is-visible");
 				},  //what is to happen when this element is scrolled to
-				offset: "85%" //reveal when 85% of screen is scrolled
+				offset: that .offsetPercentage //reveal when 85% of screen is scrolled
 			}); //Waypoints obj needs atleast 2 properties
 		}); //anything inside this each() method will run once for each element
 	}
