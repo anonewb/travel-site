@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10325,157 +10325,6 @@ return jQuery;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _MobileMenu = __webpack_require__(2);
-
-var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
-
-var _RevealOnScroll = __webpack_require__(3);
-
-var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//MobileMenu is just a var name,its name can be anything.but to stay organized name it same as name of the class
-//We cant just import above module, we have to create an obj that uses this MobileMenu class as a blueprint
-
-var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj and constructor func is called
-
-//var revealOnScroll = new RevealOnScroll(); //creating a new obj/instance of RevealOnScroll class
-new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
-new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); //MobileMenu.js is a module***
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MobileMenu = function () {
-	function MobileMenu() {
-		_classCallCheck(this, MobileMenu);
-
-		// This constructor functn will ran immediately when a new obj is created with this MobileMenu class
-		this.siteHeader = (0, _jquery2.default)(".site-header"); //property of the obj
-		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM(Element) for selection of our MobileMenu
-		//in simple words element having ".&__menu-icon" is stored in this variable
-		this.menuContent = (0, _jquery2.default)(".site-header__menu-content"); //creating a shortcut to that div i.e currently hidden
-		this.events(); // calls events() method
-	}
-
-	_createClass(MobileMenu, [{
-		key: "events",
-		value: function events() {
-			//within this non-special method, list any or all events which we want to watch for.
-			this.menuIcon.click(this.toggleTheMenu.bind(this)); //when the menuIcon is clicked we want to call toggleTheMenu() method. Anything inside bind() is passed will be used as this keyword in toggleTheMenu() method 
-			//here this keyword is pointing to object MobileMenu as we normally want
-		}
-	}, {
-		key: "toggleTheMenu",
-		value: function toggleTheMenu() {
-			//brand new method to handle events present in event() method
-			//now this keyword points towards our main obj as we wanted. before this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
-			this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
-			this.siteHeader.toggleClass("site-header--is-expanded");
-			this.menuIcon.toggleClass("site-header__menu-icon--close-x");
-		}
-	}]);
-
-	return MobileMenu;
-}();
-
-exports.default = MobileMenu; // ES5 way of exporting this class
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _noframework = __webpack_require__(4);
-
-var _noframework2 = _interopRequireDefault(_noframework);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RevealOnScroll = function () {
-	function RevealOnScroll(els, offset) {
-		_classCallCheck(this, RevealOnScroll);
-
-		this.itemsToReveal = els; //selecting element viz passed in the argument of RevealOnScroll() 
-		this.offsetPercentage = offset;
-		this.hideInitially();
-		this.createWaypoints();
-	}
-
-	_createClass(RevealOnScroll, [{
-		key: 'hideInitially',
-		value: function hideInitially() {
-			this.itemsToReveal.addClass("reveal-item");
-		}
-	}, {
-		key: 'createWaypoints',
-		value: function createWaypoints() {
-			var that = this;
-			this.itemsToReveal.each(function () {
-				//inside each(), value of this keyword is set to current DOM element which it is looping
-				//but inside Waypoints() obj, this keyword will point to the obj itself i.e Waypoints() 
-				//but we dont want this. to avoid this we can do...
-				var currentItem = this;
-				new Waypoint({ //as we imported waypoints library above..we have access to its class
-					element: currentItem, //DOM element which we want to watch
-					handler: function handler() {
-						(0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
-					}, //what is to happen when this element is scrolled to
-					offset: that.offsetPercentage //reveal when 85% of screen is scrolled
-				}); //Waypoints obj needs atleast 2 properties
-			}); //anything inside this each() method will run once for each element
-		}
-	}]);
-
-	return RevealOnScroll;
-}();
-
-exports.default = RevealOnScroll;
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11236,6 +11085,220 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Waypoint.Adapter = NoFrameworkAdapter
 }())
 ;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _MobileMenu = __webpack_require__(3);
+
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
+
+var _RevealOnScroll = __webpack_require__(4);
+
+var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _StickyHeader = __webpack_require__(5);
+
+var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mobileMenu = new _MobileMenu2.default(); //new MobileMenu(); creates new obj and constructor func is called
+
+//var revealOnScroll = new RevealOnScroll(); //creating a new obj/instance of RevealOnScroll class
+//MobileMenu is just a var name,its name can be anything.but to stay organized name it same as name of the class
+//We cant just import above module, we have to create an obj that uses this MobileMenu class as a blueprint
+
+new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
+
+var stickyHeader = new _StickyHeader2.default();
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); //MobileMenu.js is a module***
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+	function MobileMenu() {
+		_classCallCheck(this, MobileMenu);
+
+		// This constructor functn will ran immediately when a new obj is created with this MobileMenu class
+		this.siteHeader = (0, _jquery2.default)(".site-header"); //property of the obj
+		this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon"); // property that stores DOM(Element) for selection of our MobileMenu
+		//in simple words element having ".&__menu-icon" is stored in this variable
+		this.menuContent = (0, _jquery2.default)(".site-header__menu-content"); //creating a shortcut to that div i.e currently hidden
+		this.events(); // calls events() method
+	}
+
+	_createClass(MobileMenu, [{
+		key: "events",
+		value: function events() {
+			//within this non-special method, list any or all events which we want to watch for.
+			this.menuIcon.click(this.toggleTheMenu.bind(this)); //when the menuIcon is clicked we want to call toggleTheMenu() method. Anything inside bind() is passed will be used as this keyword in toggleTheMenu() method 
+			//here this keyword is pointing to object MobileMenu as we normally want
+		}
+	}, {
+		key: "toggleTheMenu",
+		value: function toggleTheMenu() {
+			//brand new method to handle events present in event() method
+			//now this keyword points towards our main obj as we wanted. before this keyword is pointing to menuIcon element as its used as an event handler used inside above this.menuIcon.click(this.toggleTheMenu) event. To make this keyword point to our main obj we use bind method
+			this.menuContent.toggleClass("site-header__menu-content--is-visible"); //adding new class called &--is-visible using BEM methodology
+			this.siteHeader.toggleClass("site-header--is-expanded");
+			this.menuIcon.toggleClass("site-header__menu-icon--close-x");
+		}
+	}]);
+
+	return MobileMenu;
+}();
+
+exports.default = MobileMenu; // ES5 way of exporting this class
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(1);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RevealOnScroll = function () {
+	function RevealOnScroll(els, offset) {
+		_classCallCheck(this, RevealOnScroll);
+
+		this.itemsToReveal = els; //selecting element viz passed in the argument of RevealOnScroll() 
+		this.offsetPercentage = offset;
+		this.hideInitially();
+		this.createWaypoints();
+	}
+
+	_createClass(RevealOnScroll, [{
+		key: 'hideInitially',
+		value: function hideInitially() {
+			this.itemsToReveal.addClass("reveal-item");
+		}
+	}, {
+		key: 'createWaypoints',
+		value: function createWaypoints() {
+			var that = this;
+			this.itemsToReveal.each(function () {
+				//inside each(), value of this keyword is set to current DOM element which it is looping
+				//but inside Waypoints() obj, this keyword will point to the obj itself i.e Waypoints() 
+				//but we dont want this. to avoid this we can do...
+				var currentItem = this;
+				new Waypoint({ //as we imported waypoints library above..we have access to its class
+					element: currentItem, //DOM element which we want to watch
+					handler: function handler() {
+						(0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
+					}, //what is to happen when this element is scrolled to
+					offset: that.offsetPercentage //reveal when 85% of screen is scrolled
+				}); //Waypoints obj needs atleast 2 properties
+			}); //anything inside this each() method will run once for each element
+		}
+	}]);
+
+	return RevealOnScroll;
+}();
+
+exports.default = RevealOnScroll;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(1);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StickyHeader = function () {
+	//new module
+	function StickyHeader() {
+		_classCallCheck(this, StickyHeader);
+
+		this.siteHeader = (0, _jquery2.default)(".site-header"); //grabing site-header element
+		this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title"); //grabbing large-hero__title element
+		this.createHeaderWaypoint(); // calling our newly created method
+	}
+
+	_createClass(StickyHeader, [{
+		key: 'createHeaderWaypoint',
+		value: function createHeaderWaypoint() {
+			var that = this; //used "that" coz we want to point "this" viz inside handler functn to our main obj i.e StickyHeader 
+			new Waypoint({ //as we imported waypoints library above..we have access to its class
+				element: this.headerTriggerElement[0], // "element" shud hv DOM element as value and "this.headerTriggerElement" is jq obj so we wrote this.headerTriggerElement[0] which points to DOM element
+				handler: function handler(direction) {
+					if (direction == "down") {
+						that.siteHeader.addClass("site-header--dark"); //added modifier class to site-header to bcom dark
+					} else {
+						that.siteHeader.removeClass("site-header--dark"); //removed modifier class to site-header to bcom dark
+					}
+				}
+			});
+		}
+	}]);
+
+	return StickyHeader;
+}();
+
+exports.default = StickyHeader;
 
 /***/ })
 /******/ ]);
