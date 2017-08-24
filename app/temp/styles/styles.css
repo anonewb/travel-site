@@ -1402,10 +1402,21 @@ a {
 	top: 0;
 	bottom: 0; /*top and bottom:0 will take full height of the window*/
 	left: 0;
-	right: 0;
+	right: 0; /*for full width of window*/
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transform: scale(1.2);
+	        transform: scale(1.2);
+	-webkit-transition: all .3s ease-out;
+	transition: all .3s ease-out;
 }
 
-/*for full width of window*/
+.modal--is-visible {
+		opacity: 1;
+		visibility: visible;
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+	}
 
 .modal__inner {
 		position: absolute;
