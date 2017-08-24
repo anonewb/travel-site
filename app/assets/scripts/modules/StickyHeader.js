@@ -1,12 +1,21 @@
 import $ from 'jquery';
 import waypoints from '../../../../node_modules/waypoints/lib/noframework.waypoints';
+import smoothScroll from 'jquery-smooth-scroll';
 
 
 class StickyHeader { //new module
 	constructor() {
-		this.siteHeader = $(".site-header"); //grabing site-header element
+		this.siteHeader = $(".site-header"); //created new property. Grabing site-header element
 		this.headerTriggerElement = $(".large-hero__title"); //grabbing large-hero__title element
 		this.createHeaderWaypoint(); // calling our newly created method
+		this.pageSections = $(".page-section");
+		this.headerLinks = $(".primary-nav a"); //dom property that stores all header links
+		this.createPageSectionWaypoints();
+		this.addSmoothScrolling();
+	}
+
+	addSmoothScrolling() {
+		this.headerLinks.smoothScroll();
 	}
 
 	createHeaderWaypoint() {
@@ -20,6 +29,36 @@ class StickyHeader { //new module
 					that.siteHeader.removeClass("site-header--dark"); //removed modifier class to site-header to bcom dark
 				}
 			}
+		});
+	}
+
+	createPageSectionWaypoints() {
+		var that = this;
+		this.pageSections.each(function() {
+			var currentPageSection = this;
+			new Waypoint({ //creating new waypoint obj for each section
+				element: currentPageSection,
+				handler: function(direction) {
+					if(direction == "down") {
+						var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+						that.headerLinks.removeClass("is-current-link");
+						$(matchingHeaderLink).addClass("is-current-link");
+					}
+				},
+				offset: "18%"
+			});
+
+			new Waypoint({ //creating new waypoint obj for each section
+				element: currentPageSection,
+				handler: function(direction) {
+					if(direction == "up") {
+						var matchingHeaderLink = currentPageSection.getAttribute("data-matching-link");
+						that.headerLinks.removeClass("is-current-link");
+						$(matchingHeaderLink).addClass("is-current-link");
+					}
+				},
+				offset: "-40%"
+			});
 		});
 	}
 }
