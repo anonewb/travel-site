@@ -6,7 +6,7 @@
 
 	{{#first}}      /* Runs only 1 time */
 		.icon {
-			background-image: url('/assets/images/sprites/{{{sprite}}}');
+			background-image: url('../../assets/images/sprites/{{{sprite}}}');
 		}
 	{{/first}}
 

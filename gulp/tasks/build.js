@@ -11,13 +11,13 @@ gulp.task('previewDist', function() {
 	browserSync.init({
 		notify: false,
 		server: {
-			baseDir: "dist"  			//points server to baseDir(db directory) to app folder
+			baseDir: "docs"  			//points server to baseDir(db directory) to app folder
 		}
 	});
 });
 
-gulp.task('deleteDistFolder', function() {
-	return del("./dist");
+gulp.task('deleteDistFolder', ['icons'], function() {
+	return del("./docs");
 });
 
 gulp.task('copyGeneralFiles',['deleteDistFolder'], function() {
@@ -32,26 +32,30 @@ gulp.task('copyGeneralFiles',['deleteDistFolder'], function() {
 	]
 
 	return gulp.src(pathsToCopy)
-		.pipe(gulp.dest("./dist"));
+		.pipe(gulp.dest("./docs"));
 });
 
-gulp.task('optimizeImages', ['deleteDistFolder', 'icons'], function() { //for imgs
+gulp.task('optimizeImages', ['deleteDistFolder'], function() { //for imgs
 	return gulp.src(['./app/assets/images/**/*', '!./app/assets/images/icons', '!./app/assets/images/icons/**/*'])
 		.pipe(imagemin({
 			progressive: true, //optimize jpeg imgs even further
 			interlaced: true, //for gif
 			multipass: true //for svg
 		}))
-		.pipe(gulp.dest("./dist/assets/images"));
+		.pipe(gulp.dest("./docs/assets/images"));
 });
 
-gulp.task('usemin',['deleteDistFolder', 'styles', 'scripts'], function() { //for css and js
+gulp.task('useminTrigger',['deleteDistFolder'], function() {
+	gulp.start("usemin");
+});
+
+gulp.task('usemin',['styles', 'scripts'], function() { //for css and js
 	return gulp.src("./app/index.html")
 		.pipe(usemin({
 			css: [function() {return rev()}, function() {return cssnano()}],
 			js: [function() {return rev()}, function() {return uglify()}]
 		}))
-		.pipe(gulp.dest("./dist"));
+		.pipe(gulp.dest("./docs"));
 });
 
-gulp.task('build', ['deleteDistFolder','copyGeneralFiles', 'optimizeImages', 'usemin']);
+gulp.task('build', ['deleteDistFolder','copyGeneralFiles', 'optimizeImages', 'useminTrigger']);
