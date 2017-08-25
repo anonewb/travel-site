@@ -2,14 +2,17 @@
 // create object that tells webpack what to do
 
 module.exports = {
-	entry: './app/assets/scripts/App.js',
+	entry: {
+		App: "./app/assets/scripts/App.js",
+		Vendor: "./app/assets/scripts/Vendor.js"
+	}, //obj that lists multiple entry points
 	node: {
 	    __dirname: true
   	},
   	target: 'node',
 	output: {
-		path: __dirname+'/app/temp/scripts',
-        filename: "bundle.js"
+		path: __dirname+"/app/temp/scripts",
+        filename: '[name].js' //[] will keep file name dynamic
 	},
 	module: { //new obj module
 		loaders: [ //property having array

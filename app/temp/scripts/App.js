@@ -11282,6 +11282,7 @@ var StickyHeader = function () {
 	function StickyHeader() {
 		_classCallCheck(this, StickyHeader);
 
+		this.lazyImages = (0, _jquery2.default)(".lazyloaded");
 		this.siteHeader = (0, _jquery2.default)(".site-header"); //created new property. Grabing site-header element
 		this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title"); //grabbing large-hero__title element
 		this.createHeaderWaypoint(); // calling our newly created method
@@ -11289,9 +11290,17 @@ var StickyHeader = function () {
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a"); //dom property that stores all header links
 		this.createPageSectionWaypoints();
 		this.addSmoothScrolling();
+		this.refreshWaypoints();
 	}
 
 	_createClass(StickyHeader, [{
+		key: 'refreshWaypoints',
+		value: function refreshWaypoints() {
+			this.lazyImages.load(function () {
+				Waypoint.refreshAll();
+			});
+		}
+	}, {
 		key: 'addSmoothScrolling',
 		value: function addSmoothScrolling() {
 			this.headerLinks.smoothScroll();
