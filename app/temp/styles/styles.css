@@ -1183,8 +1183,8 @@ a {
 	}
 
 			.site-header--dark .site-header__logo { /*this will only be used when --dark modifier class is added to logo*/
-				-webkit-transform: scale(.57);
-				        transform: scale(.57);
+				-webkit-transform: scale(.56);
+				        transform: scale(.56);
 			}
 	}
 
