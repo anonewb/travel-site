@@ -6,7 +6,11 @@
 
 	{{#first}}      /* Runs only 1 time */
 		.icon {
+<<<<<<< HEAD
 			background-image: url('../../assets/images/sprites/{{{sprite}}}');
+=======
+			background-image: url('/assets/images/sprites/{{{sprite}}}');
+>>>>>>> travel-site/master
 		}
 	{{/first}}
 
